@@ -4,7 +4,7 @@ This repository contains the code for the web development course I am currently 
 
 Below are notes from the course:
 
-**HTML**
+## HTML
 
 ```
 heading ranging from 1-6
@@ -40,7 +40,9 @@ image
 </head>
 ```
 
-#### CSS
+## CSS
+
+### Selectors
 
 ```
 Select h1 and make it blue
@@ -87,7 +89,11 @@ and operator
 s1s2{
 	color:red
 }
+```
 
+### Properties
+
+```
 css properties
 font-size:20px # font-size, 1em is 100% of parent size 1rem 100% of root normal html element
 
@@ -119,15 +125,23 @@ border-top: 0px # make top border 0 pixels
 border-width: 0px 10px 20px 40px # top right bottom left or top bottom
 padding:20px # push border out by 20px add space between element and border
 margin:20px # add space by 20 px between border and outside
+```
 
-# Cascading Style Sheets importance
+### Cascading Style Sheets importance
+
+```
 Position
 Specificity # id > attribute > class > element
 Type # inline > internal > external
 importance  #color:green !important # override other css
 
-#responsive design
+```
 
+### Responsive Design
+
+#### Media query
+
+```
 #media query
 @media screen and (max-width: 600px){
 	#CSS for screen width less or equal than 600px
