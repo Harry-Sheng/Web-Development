@@ -134,7 +134,6 @@ Position
 Specificity # id > attribute > class > element
 Type # inline > internal > external
 importance  #color:green !important # override other css
-
 ```
 
 ### Responsive Design
@@ -146,7 +145,5 @@ importance  #color:green !important # override other css
 @media screen and (max-width: 600px){
 	#CSS for screen width less or equal than 600px
 }
-
-#css grid
 
 ```
