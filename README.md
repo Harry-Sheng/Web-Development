@@ -35,6 +35,16 @@ anchor elements
 image
 <img src="location of image" alt="image description"/>
 
+span used to style inline elements
+<span> inline element </span>
+
+table
+<table>
+	<tr class="row">
+		<th class="col"> heading </th>
+	</tr>
+</table>
+
 <head>
 	information not shown on the website, such as character set
 </head>
@@ -138,12 +148,57 @@ importance  #color:green !important # override other css
 
 ### Responsive Design
 
+Flex good for 1d
+Grid good for 2d
+Bootstrap: mobile first design
+
 #### Media query
 
 ```
-#media query
+max-width:600px # screen width less or equal than 600px
 @media screen and (max-width: 600px){
 	#CSS for screen width less or equal than 600px
 }
 
+min-width:600px # screen width more or equal than 600px
+@media screen and (min-width: 600px){
+	#CSS for screen width more or equal than 600px
+}
+
+@media (max-width: 600px) and (min-width: 300px){
+	#CSS for screen width less or equal than 600px and more or equal than 300px
+}
+
+mobile: 320px - 480px
+tablet: 481px - 1200px
+laptop: 1201px - 1600px
+desktop: 1600px and more
+```
+
+#### Flexbox
+
+```
+.container{
+	display:flex;
+}
+
+flex-direction: row # default left to right
+flex-direction: row-reverse # right to left
+flex-direction: column # top to bottom
+flex-direction: column-reverse # bottom to top
+
+flex-basis: 100px; # set width or height of element
+
+order: 1; # change order of element
+
+flex-wrap: wrap; # wrap elements if they do not fit. Go to next line.
+flex-wrap: nowrap; # do not wrap elements
+
+x-axis
+justify-content: center; # center elements
+justify-content: space-between; # space between elements
+
+y-axis
+align-items: center; # center elements vertically
+align-items: flex-start; # align elements to the top
 ```
