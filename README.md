@@ -213,6 +213,8 @@ vite to create react environment
 npm create vite@latest project  -- --template react
 ```
 
+component is a function that returns JSX
+
 ```
 const Hello = (props) => {
   return (
@@ -234,6 +236,37 @@ const App = () => {
 export default App
 ```
 
+set state with useState
+
+```
+const [counter, setCounter] = useState(0)
+# may only be called from the inside of a function body that defines a React component
+```
+
+event handler
+
+```
+const App = () => {
+  const [ counter, setCounter ] = useState(0)
+
+
+  const handleClick = () => {
+    console.log('clicked')
+	setCounter(counter + 1)
+  }
+
+  return (
+    <div>
+      <div>{counter}</div>
+
+      <button onClick={handleClick}>
+        plus
+      </button>
+    </div>
+  )
+}
+```
+
 ```
 debugger #to add break point
 ```
@@ -245,7 +278,7 @@ const # variable that can not be reassigned. However, the content of the object 
 let # variable that can be reassigned
 ```
 
-### Arrays
+Arrays
 
 ```
 const t = [1, -1, 3]
@@ -259,26 +292,59 @@ console.log(t[1])     // -1 is printed
 t.forEach(value => {
   console.log(value)  // numbers 1, -1, 3, 5 are printed, each on its own line
 })
+```
 
-# Concat
+Concat
+
+```
 const t2 = t.concat(5)  // creates new array
 
 console.log(t)  // [1, -1, 3] is printed
 console.log(t2) // [1, -1, 3, 5] is printed
+```
 
-# Map
-const t = [1, 2, 3]
+Destructuring arrays
 
-const m1 = t.map(value => value * 2)
-console.log(m1)   // [2, 4, 6] is printed
-
-# Destructuring arrays
+```
 const t = [1, 2, 3, 4, 5]
 
 const [first, second, ...rest] = t
 
 console.log(first, second)  // 1, 2 is printed
 console.log(rest)          // [3, 4, 5] is printed
+```
+
+Filter
+
+```
+var dog = animals.filter(animal => animal.species === 'dog');
+# filter will loop though every element in array and return a new array with only the elements that pass the condition
+```
+
+Reject
+
+```
+var dog = animals.reject(animal => animal.species === 'dog');
+# reject will loop though every element in array and return a new array with only the elements that do not pass the condition
+```
+
+Map
+
+```
+const t = [1, 2, 3]
+
+const m1 = t.map(value => value * 2)
+console.log(m1)   // [2, 4, 6] is printed
+```
+
+Reduce
+
+```
+var total = [0, 1, 2, 3].reduce(function(sum, value){
+  return sum + value;
+}, 0);
+
+# reduce will loop though every element in array and return a single value. it also needs a starting object here it is 0
 ```
 
 ### Objects
