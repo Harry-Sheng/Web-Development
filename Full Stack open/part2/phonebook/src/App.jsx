@@ -1,16 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import Filter from './fliter'
 import PersonForm from "./personform"
+import axios from 'axios'
+import personsService from './services/persons'
+
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber,setNewNumber] = useState('')
   const [search,setSearch] = useState('')
+
+  useEffect(() =>{
+    console.log('effect')
+
+    const promise = axios.get('http://localhost:3001/persons')
+
+    const eventHandler = response =>{
+      console.log('promise fulfilled')
+      setPersons(response.data)
+    }
+
+    promise.then(eventHandler)
+  },[])
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -33,11 +45,23 @@ const App = () => {
       const newPerson = {
         name: newName,
         number: newNumber,
-        id: persons.length + 1,
+        id: String(persons.length + 1),
       };
-      setPersons(persons.concat(newPerson));
-      setNewName('')
-      setNewNumber('')
+      personsService.create(newPerson).then(response => {
+        setPersons(persons.concat(response.data))
+        setNewName('')
+        setNewNumber('')
+      })
+    }
+  }
+
+  const deletePerson = (person) =>{
+    if (confirm('Delete ' + person.name)){
+      personsService.deleteEntries(person.id).then(response => {
+        console.log('deleted', response.data)
+        const newPersons = persons.filter(x => x.id != person.id)
+        setPersons(newPersons)
+      })
     }
   }
 
@@ -48,7 +72,11 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm addNameNumber= {addNameNumber} handleNameChange={handleNameChange} newName={newName} newNumber={newNumber} handleNumberChange= {handleNumberChange}></PersonForm>
       <h2>Numbers</h2>
-      {persons.map(x => <p key = {x.id}>{x.name + ' ' + x.number}</p>)}
+      {persons.map(x => {
+        return <div key = {x.id}>
+          <p>{x.name + ' ' + x.number} <button onClick={(event) => deletePerson(x)}>Delete</button></p>
+        </div>
+      })}
     </div>
   )
 }
