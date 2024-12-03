@@ -6,7 +6,7 @@ Below are notes from the course:
 
 ## HTML
 
-```
+```html
 heading ranging from 1-6
 <h1></h1>
 
@@ -14,39 +14,39 @@ paragraph
 <p></p>
 
 new line in a paragraph 
-<br>
+<br />
 
 horizontal line
-<hr>
+<hr />
 
 unordered list
 <ul>
-	<li> item1 </li>
+  <li>item1</li>
 </ul>
 
 ordered list
 <ol>
-	<li> item1 </li>
+  <li>item1</li>
 </ol>
 
 anchor elements
 <a href="link"> link </a>
 
 image
-<img src="location of image" alt="image description"/>
+<img src="location of image" alt="image description" />
 
 span used to style inline elements
 <span> inline element </span>
 
 table
 <table>
-	<tr class="row">
-		<th class="col"> heading </th>
-	</tr>
+  <tr class="row">
+    <th class="col">heading</th>
+  </tr>
 </table>
 
 <head>
-	information not shown on the website, such as character set
+  information not shown on the website, such as character set
 </head>
 ```
 
@@ -155,7 +155,7 @@ Bootstrap: mobile first design
 #### Media query
 
 ```
-max-width:600px # screen width less or equal than 600px
+max-width:600px  screen width less or equal than 600px
 @media screen and (max-width: 600px){
 	#CSS for screen width less or equal than 600px
 }
@@ -205,82 +205,114 @@ align-items: flex-start; # align elements to the top
 
 ## React
 
+Clustering javascript, html, and css into same components that can be reused.
+This is super useful for scaling and maintaining code.
+
 ### Components
 
 vite to create react environment
 
-```
+```js
 npm create vite@latest project  -- --template react
 ```
 
 component is a function that returns JSX
 
-```
+```js
 const Hello = (props) => {
   return (
     <div>
       <p>Hello {props.name}</p>
     </div>
-  )
-}
+  );
+};
 
 const App = () => {
   return (
     <div>
       <h1>Greetings</h1>
-      <Hello name='George' />
-      <Hello name='Daisy' />
+      <Hello name="George" />
+      <Hello name="Daisy" />
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
 ```
 
 set state with useState
 
-```
-const [counter, setCounter] = useState(0)
-# may only be called from the inside of a function body that defines a React component
+```js
+const [counter, setCounter] = useState(0);
+// may only be called from the inside of a function body that defines a React component
 ```
 
 event handler
 
-```
+```js
 const App = () => {
-  const [ counter, setCounter ] = useState(0)
-
+  const [counter, setCounter] = useState(0);
 
   const handleClick = () => {
-    console.log('clicked')
-	setCounter(counter + 1)
-  }
+    console.log("clicked");
+    setCounter(counter + 1);
+  };
 
   return (
     <div>
       <div>{counter}</div>
-
-      <button onClick={handleClick}>
-        plus
-      </button>
+      <button onClick={handleClick}>plus</button>
     </div>
-  )
-}
+  );
+};
 ```
 
+```js
+debugger; //to add break point
 ```
-debugger #to add break point
+
+Inline styles
+
+```js
+const Footer = () => {
+  const footerStyle = {
+    color: "green",
+    fontStyle: "italic",
+    fontSize: 16,
+  };
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>
+        Note app, Department of Computer Science, University of Helsinki 2024
+      </em>
+    </div>
+  );
+};
+
+const App = () => {
+  // ...
+
+  return (
+    <div>
+      <h1>Notes</h1>
+      <Notification message={errorMessage} />
+      // ...
+      <Footer />
+    </div>
+  );
+};
 ```
 
 ## JavaScript
 
-```
-const # variable that can not be reassigned. However, the content of the object variable refers to can be changed.
-let # variable that can be reassigned
+```js
+const // variable that can not be reassigned. However, the content of the object variable refers to can be changed.
+let // variable that can be reassigned
 ```
 
 Arrays
 
-```
+```js
 const t = [1, -1, 3]
 
 t.push(5)
@@ -296,63 +328,128 @@ t.forEach(value => {
 
 Concat
 
-```
-const t2 = t.concat(5)  // creates new array
+```js
+const t2 = t.concat(5); // creates new array
 
-console.log(t)  // [1, -1, 3] is printed
-console.log(t2) // [1, -1, 3, 5] is printed
+console.log(t); // [1, -1, 3] is printed
+console.log(t2); // [1, -1, 3, 5] is printed
 ```
 
 Destructuring arrays
 
-```
-const t = [1, 2, 3, 4, 5]
+```js
+const t = [1, 2, 3, 4, 5];
 
-const [first, second, ...rest] = t
+const [first, second, ...rest] = t;
 
-console.log(first, second)  // 1, 2 is printed
-console.log(rest)          // [3, 4, 5] is printed
+console.log(first, second); // 1, 2 is printed
+console.log(rest); // [3, 4, 5] is printed
 ```
 
 Filter
 
-```
+```js
 var dog = animals.filter(animal => animal.species === 'dog');
 # filter will loop though every element in array and return a new array with only the elements that pass the condition
 ```
 
 Reject
 
-```
+```js
 var dog = animals.reject(animal => animal.species === 'dog');
 # reject will loop though every element in array and return a new array with only the elements that do not pass the condition
 ```
 
 Map
 
-```
-const t = [1, 2, 3]
+```js
+const t = [1, 2, 3];
 
-const m1 = t.map(value => value * 2)
-console.log(m1)   // [2, 4, 6] is printed
+const m1 = t.map((value) => value * 2);
+console.log(m1); // [2, 4, 6] is printed
 ```
 
 Reduce
 
-```
-var total = [0, 1, 2, 3].reduce(function(sum, value){
+```js
+var total = [0, 1, 2, 3].reduce(function (sum, value) {
   return sum + value;
 }, 0);
 
-# reduce will loop though every element in array and return a single value. it also needs a starting object here it is 0
+//reduce will loop though every element in array and return a single value. it also needs a starting object here it is 0
 ```
 
-### Objects
+Objects
 
-```
+```js
 const object1 = {
-  name: 'Arto Hellas',
+  name: "Arto Hellas",
   age: 35,
-  education: 'PhD',
-}
+  education: "PhD",
+};
+```
+
+Toggle
+
+```js
+const label = statement ? "if statement if true" : "if statement is false";
+```
+
+## Backend
+
+### Node.js
+
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+
+- Create servers
+- Communicate with databases
+- Read and write files on your computer
+
+### Axios
+
+an open source library to communicate between the browser and server.
+
+Promise is an object representing the eventual completion or failure of an asynchronous operation.
+success is handled with the then method and failure with the catch method.
+
+```js
+const promise = axios.get("http://localhost:3001/notes");
+promise.then((response) => {
+  console.log(response);
+});
+```
+
+Hook is a function that do something when something changes. Or a function that allows you to create state in a functional component.
+
+```js
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Note from "./components/Note";
+
+const App = () => {
+  const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState("");
+  const [showAll, setShowAll] = useState(true);
+
+  //useEffect specify how often a function is run
+  useEffect(() => {
+    console.log("effect");
+    axios.get("http://localhost:3001/notes").then((response) => {
+      console.log("promise fulfilled");
+      setNotes(response.data);
+    });
+  }, []); // empty array means that the effect is only run along with the first render of the component, if it is not empty it will run when the content of the array changes.
+  console.log("render", notes.length, "notes");
+
+  // ...
+};
+```
+
+methods
+
+```js
+//post request update the server
+axios.post("http://localhost:3001/notes", noteObject).then((response) => {
+  console.log(response);
+});
 ```
