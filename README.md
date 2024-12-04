@@ -453,3 +453,60 @@ axios.post("http://localhost:3001/notes", noteObject).then((response) => {
   console.log(response);
 });
 ```
+
+### Express
+
+Express is a web application framework for Node.js.
+Abstraction for general use cases we usually require to build a backend server.
+
+```
+npm install express
+```
+
+```js
+const express = require('express')
+const app = express()
+
+let notes = [
+  ...
+]
+
+app.get('/', (request, response) => {
+  response.send('<h1>Hello World!</h1>')
+})
+
+app.get('/api/notes', (request, response) => {
+  response.json(notes)
+})
+
+const PORT = 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
+```
+
+nodemon
+automatically restart the node application when file changes.
+
+```
+npm install --save-dev nodemon
+```
+
+package.json
+
+```json
+{
+  // ..
+  "scripts": {
+    "start": "node index.js",
+
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+  // ..
+}
+```
+
+```
+npm run dev
+```
