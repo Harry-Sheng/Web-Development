@@ -14,11 +14,12 @@ const App = () => {
   useEffect(() =>{
     console.log('effect')
 
-    const promise = axios.get('http://localhost:3001/persons')
+    const promise = axios.get('http://localhost:3001/api/persons')
 
     const eventHandler = response =>{
       console.log('promise fulfilled')
       setPersons(response.data)
+      console.log(response.data)
     }
 
     promise.then(eventHandler)
@@ -96,7 +97,11 @@ const App = () => {
         setTimeout(() => {
           setSuccessMessage(null)
         },5000)
-      })
+      }).catch(error => {
+        setSuccessMessage(error.response.data.error)
+        setTimeout(() => {
+        setSuccessMessage(null)
+      },5000)})
     }
   }
 
@@ -114,7 +119,6 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <Notification message = {successMessage}></Notification>
-      <Filter search={search} handleSearchChange={handleSearchChange} persons = {persons}></Filter>
       <h2>add a new</h2>
       <PersonForm addNameNumber= {addNameNumber} handleNameChange={handleNameChange} newName={newName} newNumber={newNumber} handleNumberChange= {handleNumberChange}></PersonForm>
       <h2>Numbers</h2>
